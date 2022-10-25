@@ -1,0 +1,139 @@
+syntax = "proto3";
+
+package protos;
+
+option go_package = "go/service1;grpc_server1";
+
+// --------------------------------------------------------
+
+service UserRPC {
+    rpc LoginUser (DataLogin) returns (ResponseLogin) {}
+    rpc RegisterUser (DataRegister) returns (ResponseRegister) {}
+    rpc SelectSessionUserById(DataSession) returns (ResponseSession) {}
+    rpc SelectUser (DataSelectUser) returns (ResponseSelectUser) {}
+    rpc SelectUsers (LimitSelectUsers) returns (ResponseSelectUsers) {}
+    rpc InsertProduct (DataInsertProduct) returns (ResponseInsertProduct) {}
+    rpc DeleteProduct (DataDeleteProduct) returns (ResponseDeleteProduct) {}
+    rpc UpdateProduct (DataUpdateProduct) returns (ResponseUpdateProduct) {}
+}
+
+// request param
+message DataLogin {
+    string email = 1;
+    string password = 2;
+    bool remember_me = 3;
+}
+
+message DataRegister {
+    string user_email = 1;
+    string user_name = 2;
+    string user_password = 3;
+}
+
+message DataSession {
+    string id = 1;
+}
+
+message DataSelectUser {
+    string id = 1;
+}
+
+message LimitSelectUsers {
+    int32 limit = 1;
+}
+
+message DataInsertProduct {
+    string UserId=1;
+    string ProductId=2;
+    string ProductName=3;
+    uint32 ProductStock=4;
+    uint32 ProductPrice=5;
+    string CreatedDate=6;
+    string LastUpdate=7;
+    string ProductImage=8;
+    uint32 ProductSell=9;
+    string ProductInfo=10;
+}
+
+message DataDeleteProduct {
+    string UserId = 1;
+    string ProductId = 2;
+    string ProductImage = 3;
+}
+
+message DataUpdateProduct {
+    string UserId=1;
+    string ProductId=2;
+    string ProductName=3;
+    uint32 ProductStock=4;
+    uint32 ProductPrice=5;
+    string ProductImage=7;
+    uint32 ProductSell=8;
+    string ProductInfo=9;
+    string CreatedDate=10;
+    string LastUpdate=11;
+}
+
+// response
+message ResponseUpdateProduct {
+    int32 status = 1;
+    string message = 2;
+    DataUpdateProduct product = 3;
+}
+
+message ResponseDeleteProduct {
+    int32 status = 1;
+    string message = 2;
+    string ProductId = 3; 
+}
+
+message ResponseLogin {
+    int32 status = 1;
+    string message = 2;
+    string user_id = 3;
+    string session =  4;
+}
+
+message ResponseRegister {
+    int32 status = 1;
+    string message = 2;
+}
+
+message ResponseSession {
+    string user_session = 1;
+    bool remember_me = 2;
+}
+
+message ResponseSelectUser {
+    string user_id = 1;
+    string user_email = 2;
+    string user_name = 3;
+    string user_image = 4;
+    string user_status = 5;
+    string created_date = 6;
+    string last_update = 7;
+    repeated Product Products = 8;
+}
+
+message ResponseSelectUsers {
+    repeated ResponseSelectUser data = 1;
+}
+
+message ResponseInsertProduct {
+    int32 status = 1;
+    string message = 2;
+    DataInsertProduct product = 3;
+}
+
+message Product {
+  string UserId=1;
+  string ProductId=2;
+  string ProductName=3;
+  uint32 ProductStock=4;
+  uint32 ProductPrice=5;
+  string CreatedDate=6;
+  string LastUpdate=7;
+  string ProductImage=8;
+  uint32 ProductSell=9;
+  string ProductInfo=10;
+}

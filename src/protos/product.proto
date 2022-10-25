@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "src/protos/user.proto";
+
+package protos;
+
+option go_package = "go/service1;grpc_server1";
+
+// --------------------------------------------------------
+
+service ProductRPC {
+    rpc ProductsRPC (User) returns (Products) {}
+    rpc SingelProduct (RequestProduct) returns (Product) {}
+}
+
+message User {
+    string Id = 1;
+}
+
+message RequestProduct {
+    string ProductName = 1;
+    string ProductId = 2;
+}
+
+message Products {
+    repeated Product Products = 1;
+}

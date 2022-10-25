@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package protos;
+
+option go_package = "go/service1;grpc_server1";
+
+service ImageRPC {
+    rpc InsertProductId(DataProduct) returns (ResponseInsertProductID) {}
+}
+
+// images handler
+message DataProduct {
+    string UserId=1;
+    string ProductId=2;
+    string CreatedDate=6;
+    string LastUpdate=7;
+    string ProductImage=8;
+}
+
+message ResponseInsertProductID {
+    string status=1;
+    string error=2;
+}

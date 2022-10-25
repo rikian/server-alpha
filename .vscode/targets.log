@@ -1,0 +1,376 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
+# GNU Make 4.3
+# Built for Windows32
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Tue Oct 25 17:58:15 2022
+
+# Variables
+
+# environment
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+# environment
+SYSTEMDRIVE = C:
+# environment
+LC_ALL = C
+# environment
+USERPROFILE = C:\Users\Rikian
+# environment
+TMPDIR = C:\Users\Rikian\AppData\Local\Temp
+# environment
+LOCALAPPDATA = C:\Users\Rikian\AppData\Local
+# environment
+VSCODE_CWD = C:\Users\Rikian\Documents\repositories\golang-main\server-beta
+# environment
+MINGW_PREFIX = C:/Program Files/Git/mingw64
+# environment
+SYSTEMROOT = C:\Windows
+# environment
+PROCESSOR_LEVEL = 6
+# environment
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+# default
+MAKE_COMMAND := make.exe
+# environment
+GOPATH = C:\Users\Rikian\go
+# automatic
+@D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
+# environment
+ACLOCAL_PATH = C:\Program Files\Git\mingw64\share\aclocal;C:\Program Files\Git\usr\share\aclocal
+# environment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_4280_RDKLJZENQEORUMGI
+# environment
+ORIGINAL_TEMP = C:/Users/Rikian/AppData/Local/Temp
+# environment
+FPS_BROWSER_USER_PROFILE_STRING = Default
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# environment
+PWD = C:/Users/Rikian/Documents/repositories/golang-main/server-beta
+# automatic
+%D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
+# environment
+HOSTNAME = DESKTOP-68IVH74
+# environment
+OLDPWD = C:/Users/Rikian/Documents/repositories
+# automatic
+^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\Rikian\AppData\Roaming\Code\CachedData\129500ee4c8ab7263461ffe327268ba56b9f210d
+# environment
+SSH_ASKPASS = C:/Program Files/Git/mingw64/bin/git-askpass.exe
+# environment
+LANG = C
+# default
+.LOADED := 
+# environment
+TMP = C:\Users\Rikian\AppData\Local\Temp
+# default
+.INCLUDE_DIRS = .
+# makefile
+MAKEFLAGS = pqrR
+# environment
+PKG_CONFIG_PATH = C:\Program Files\Git\mingw64\lib\pkgconfig;C:\Program Files\Git\mingw64\share\pkgconfig
+# environment
+ONEDRIVE = C:\Users\Rikian\OneDrive
+# makefile
+CURDIR := c:/Users/Rikian/Documents/repositories/golang-main/server-beta
+# environment
+MSYSTEM_CARCH = x86_64
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# automatic
+*D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
+# environment
+PROGRAMFILES = C:\Program Files
+# environment
+MFLAGS = -pqrR
+# default
+.SHELLFLAGS := -c
+# environment
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# automatic
++D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_PID = 4280
+# automatic
+?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
+# environment
+MINGW_CHOST = x86_64-w64-mingw32
+# automatic
+*F = $(notdir $*)
+# environment
+MANPATH = C:\Program Files\Git\mingw64\local\man;C:\Program Files\Git\mingw64\share\man;C:\Program Files\Git\usr\local\man;C:\Program Files\Git\usr\share\man;C:\Program Files\Git\usr\man;C:\Program Files\Git\share\man
+# automatic
+<D = $(patsubst %/,%,$(patsubst %\,%,$(dir $<)))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+ONEDRIVECONSUMER = C:\Users\Rikian\OneDrive
+# default
+MAKE_HOST := Windows32
+# environment
+PROGRAMDATA = C:\ProgramData
+# environment
+INFOPATH = C:\Program Files\Git\usr\local\info;C:\Program Files\Git\usr\share\info;C:\Program Files\Git\usr\info;C:\Program Files\Git\share\info
+# makefile
+SHELL = C:/Program Files/Git/usr/bin/sh.exe
+# environment
+ORIGINAL_PATH = C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Rikian\bin;C:\Python311\Scripts;C:\Python311;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Program Files\Go\bin;C:\protoc\bin;C:\Users\Rikian\AppData\Local\Programs\Python\Python39;C:\php-8.1.9;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\Rikian\AppData\Local\Programs\Python\Python310\Scripts;C:\Users\Rikian\AppData\Local\Programs\Python\Python310;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Users\Rikian\AppData\Local\Microsoft\WindowsApps;C:\Users\Rikian\AppData\Roaming\npm;C:\Program Files\Git\usr\bin;C:\Program Files\nodejs\node_modules\npm\bin;C:\Users\Rikian\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\MinGW\bin;C:\Users\Rikian\go\bin;C:\Program Files\Go\bin;C:\protoc\bin;C:\Program Files\heroku\bin;C:\Users\Rikian\AppData\Local\Programs\Python\Python39;C:\php-8.1.9;C:\Users\Rikian\AppData\Roaming\Composer\vendor\bin
+# environment
+HOMEPATH = \Users\Rikian
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 2
+# environment
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# environment
+COMSPEC = C:\Windows\system32\cmd.exe
+# environment
+WINDIR = C:\Windows
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = C:\Users\Rikian\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Rikian\bin;C:\Python311\Scripts;C:\Python311;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Program Files\Go\bin;C:\protoc\bin;C:\Users\Rikian\AppData\Local\Programs\Python\Python39;C:\php-8.1.9;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\Rikian\AppData\Local\Programs\Python\Python310\Scripts;C:\Users\Rikian\AppData\Local\Programs\Python\Python310;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Users\Rikian\AppData\Local\Microsoft\WindowsApps;C:\Users\Rikian\AppData\Roaming\npm;C:\Program Files\Git\usr\bin;C:\Program Files\nodejs\node_modules\npm\bin;C:\Users\Rikian\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\MinGW\bin;C:\Users\Rikian\go\bin;C:\Program Files\Go\bin;C:\protoc\bin;C:\Program Files\heroku\bin;C:\Users\Rikian\AppData\Local\Programs\Python\Python39;C:\php-8.1.9;C:\Users\Rikian\AppData\Roaming\Composer\vendor\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+# environment
+COMPUTERNAME = DESKTOP-68IVH74
+# default
+MAKEFILES := 
+# automatic
+^F = $(notdir $^)
+# environment
+MINGW_PACKAGE_PREFIX = mingw-w64-x86_64
+# environment
+PROMPT = $P$G
+# environment
+OPENSSL_CONF = C:\Program Files\PostgreSQL\psqlODBC\etc\openssl.cnf
+# environment
+LOGONSERVER = \\DESKTOP-68IVH74
+# environment
+USERNAME = Rikian
+# environment
+TERM_PROGRAM = mintty
+# environment
+COMMONPROGRAMFILES = C:\Program Files\Common Files
+# automatic
+?F = $(notdir $?)
+# environment
+PROGRAMW6432 = C:\Program Files
+# environment
+MSYSTEM_CHOST = x86_64-w64-mingw32
+# environment
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+# automatic
++F = $(notdir $+)
+# environment
+CONFIG_SITE = C:/Program Files/Git/etc/config.site
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+USERDOMAIN = DESKTOP-68IVH74
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+OS = Windows_NT
+# environment
+MSYSTEM_PREFIX = C:/Program Files/Git/mingw64
+# makefile
+.DEFAULT_GOAL := gnp
+# environment
+DISPLAY = needs-to-be-defined
+# default
+MAKE_VERSION := 4.3
+# environment
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# environment
+USERDOMAIN_ROAMINGPROFILE = DESKTOP-68IVH74
+# environment
+NUMBER_OF_PROCESSORS = 2
+# environment
+PUBLIC = C:\Users\Public
+# environment
+_ = C:/Users/Rikian/AppData/Local/Programs/Microsoft VS Code/Code.exe
+# environment
+APPDATA = C:\Users\Rikian\AppData\Roaming
+# environment
+HOMEDRIVE = C:
+# environment
+LC_CTYPE = en_US.UTF-8
+# environment
+PROCESSOR_ARCHITECTURE = AMD64
+# environment
+GOMODCACHE = C:\Users\Rikian\go\pkg\mod
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+MSYSTEM = MINGW64
+# environment
+HOME = C:\Users\Rikian
+# environment
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# environment
+EXEPATH = C:\Program Files\Git
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+TEMP = C:\Users\Rikian\AppData\Local\Temp
+# environment
+TERM = xterm
+# environment
+VSCODE_IPC_HOOK = \\.\pipe\23d63ae2047cf637b654326afd0d8d73-1.72.1-main-sock
+# environment
+GOPROXY = https://proxy.golang.org,direct
+# default
+.RECIPEPREFIX := 
+# environment
+ORIGINAL_TMP = C:/Users/Rikian/AppData/Local/Temp
+# automatic
+<F = $(notdir $<)
+# environment
+PLINK_PROTOCOL = ssh
+# default
+SUFFIXES := 
+# environment
+ALLUSERSPROFILE = C:\ProgramData
+# environment
+SESSIONNAME = Console
+# environment
+VSCODE_CLI = 1
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync load
+# environment
+PROCESSOR_REVISION = 7a01
+# environment
+TERM_PROGRAM_VERSION = 3.5.2
+# environment
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 122 Stepping 1, GenuineIntel
+# variable set hash-table stats:
+# Load=125/1024=12%, Rehash=0, Collisions=13/152=9%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (key c:/Users/Rikian/Documents/repositories/golang-main/server-beta, mtime 1666622188): 12 files, no impossibilities.
+
+# 12 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+gnp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 3):
+	protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative src/protos/user.proto
+
+rdoc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 32):
+	docker start server-alpha
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-10-24 21:39:58
+#  File has been updated.
+#  Successfully updated.
+
+bimage:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 24):
+	docker build -t server-alpha .
+
+bcon:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 28):
+	docker container create --name server-alpha --net grpc server-alpha
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+gnpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 7):
+	protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative src/protos/product.proto
+
+migration:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 19):
+	go run database/migration/migration.go
+
+r:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 15):
+	go run main.go
+
+gnpi:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 11):
+	protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative src/protos/images.proto
+
+# files hash-table stats:
+# Load=12/1024=1%, Rehash=0, Collisions=0/22=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 23 / storage = 144 B / avg = 6 B
+# current buf: size = 8162 B / used = 144 B / count = 23 / avg = 6 B
+
+# strcache performance: lookups = 35 / hit rate = 34%
+# hash-table stats:
+# Load=23/8192=0%, Rehash=0, Collisions=0/35=0%
+# Finished Make data base on Tue Oct 25 17:58:15 2022
+
+ 
