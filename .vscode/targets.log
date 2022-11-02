@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Oct 25 17:58:15 2022
+# Make data base, printed on Tue Nov 01 14:52:11 2022
 
 # Variables
 
@@ -43,7 +43,7 @@ GOPATH = C:\Users\Rikian\go
 # environment
 ACLOCAL_PATH = C:\Program Files\Git\mingw64\share\aclocal;C:\Program Files\Git\usr\share\aclocal
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_4280_RDKLJZENQEORUMGI
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_2636_XUBPWTCERPNAGUOD
 # environment
 ORIGINAL_TEMP = C:/Users/Rikian/AppData/Local/Temp
 # environment
@@ -58,8 +58,6 @@ PWD = C:/Users/Rikian/Documents/repositories/golang-main/server-beta
 %D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
 # environment
 HOSTNAME = DESKTOP-68IVH74
-# environment
-OLDPWD = C:/Users/Rikian/Documents/repositories
 # automatic
 ^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
 # automatic
@@ -105,7 +103,7 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 4280
+VSCODE_PID = 2636
 # automatic
 ?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
 # environment
@@ -191,7 +189,7 @@ OS = Windows_NT
 # environment
 MSYSTEM_PREFIX = C:/Program Files/Git/mingw64
 # makefile
-.DEFAULT_GOAL := gnp
+.DEFAULT_GOAL := gnpa
 # environment
 DISPLAY = needs-to-be-defined
 # default
@@ -263,7 +261,7 @@ TERM_PROGRAM_VERSION = 3.5.2
 # environment
 PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 122 Stepping 1, GenuineIntel
 # variable set hash-table stats:
-# Load=125/1024=12%, Rehash=0, Collisions=13/152=9%
+# Load=124/1024=12%, Rehash=0, Collisions=13/151=9%
 
 # Pattern-specific Variable Values
 
@@ -271,9 +269,9 @@ PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 122 Stepping 1, GenuineIntel
 
 # Directories
 
-# . (key c:/Users/Rikian/Documents/repositories/golang-main/server-beta, mtime 1666622188): 12 files, no impossibilities.
+# . (key c:/Users/Rikian/Documents/repositories/golang-main/server-beta, mtime 1666868481): 15 files, no impossibilities.
 
-# 12 files, no impossibilities in 1 directories.
+# 15 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -281,24 +279,17 @@ PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 122 Stepping 1, GenuineIntel
 
 # Files
 
-gnp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 3):
-	protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative src/protos/user.proto
-
 rdoc:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 32):
+#  recipe to execute (from 'Makefile', line 36):
 	docker start server-alpha
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-10-24 21:39:58
+#  Last modified 2022-10-27 15:28:52
 #  File has been updated.
 #  Successfully updated.
 
@@ -306,15 +297,22 @@ bimage:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 24):
+#  recipe to execute (from 'Makefile', line 28):
 	docker build -t server-alpha .
 
 bcon:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 28):
+#  recipe to execute (from 'Makefile', line 32):
 	docker container create --name server-alpha --net grpc server-alpha
+
+gnpa:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 3):
+	protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative src/protos/auth.proto
 
 # Not a target:
 .DEFAULT:
@@ -333,44 +331,51 @@ gnpp:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 7):
+#  recipe to execute (from 'Makefile', line 11):
 	protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative src/protos/product.proto
 
 migration:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 19):
+#  recipe to execute (from 'Makefile', line 23):
 	go run database/migration/migration.go
+
+gnpu:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 7):
+	protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative src/protos/user.proto
 
 r:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 15):
+#  recipe to execute (from 'Makefile', line 19):
 	go run main.go
 
 gnpi:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 11):
+#  recipe to execute (from 'Makefile', line 15):
 	protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative src/protos/images.proto
 
 # files hash-table stats:
-# Load=12/1024=1%, Rehash=0, Collisions=0/22=0%
+# Load=13/1024=1%, Rehash=0, Collisions=0/23=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 23 / storage = 144 B / avg = 6 B
-# current buf: size = 8162 B / used = 144 B / count = 23 / avg = 6 B
+# strcache buffers: 1 (0) / strings = 27 / storage = 172 B / avg = 6 B
+# current buf: size = 8162 B / used = 172 B / count = 27 / avg = 6 B
 
-# strcache performance: lookups = 35 / hit rate = 34%
+# strcache performance: lookups = 40 / hit rate = 32%
 # hash-table stats:
-# Load=23/8192=0%, Rehash=0, Collisions=0/35=0%
-# Finished Make data base on Tue Oct 25 17:58:15 2022
+# Load=27/8192=0%, Rehash=0, Collisions=0/40=0%
+# Finished Make data base on Tue Nov 01 14:52:11 2022
 
  

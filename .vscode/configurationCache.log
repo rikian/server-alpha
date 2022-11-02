@@ -1,1 +1,1 @@
-{"buildTargets":["bcon","bimage","gnp","gnpi","gnpp","migration","rdoc"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}
+{"buildTargets":["bcon","bimage","gnpa","gnpi","gnpp","gnpu","migration","rdoc"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}

@@ -4,26 +4,25 @@ import (
 	"context"
 	pb "go/service1/src/protos"
 	"go/service1/src/repository"
+	"time"
 )
 
 type ProductService interface {
-	SingelProduct(ctx context.Context, input *pb.RequestProduct) (*pb.Product, error)
-	ProductsRPC(ctx context.Context, input *pb.User) (*pb.Products, error)
+	GetProductById(ctx context.Context, input *pb.RequestProduct) (*pb.Product, error)
+	GetAllProduct(ctx context.Context, input *pb.User) (*pb.Products, error)
+	InsertProduct(ctx context.Context, input *pb.DataInsertProduct) (*pb.ResponseInsertProduct, error)
+	DeleteProduct(ctx context.Context, input *pb.DataDeleteProduct) (*pb.ResponseDeleteProduct, error)
+	UpdateProduct(ctx context.Context, input *pb.DataUpdateProduct) (*pb.ResponseUpdateProduct, error)
 }
 
-type productsImpl struct {
+type ProductsImpl struct {
+	pb.UnimplementedProductRPCServer
 	Repository repository.ProductRepository
 	products   *pb.Products
 	product    *pb.Product
 }
 
-func NewProductService() ProductService {
-	return &productsImpl{
-		Repository: repository.NewProductRepo(),
-	}
-}
-
-func (s *productsImpl) SingelProduct(ctx context.Context, input *pb.RequestProduct) (*pb.Product, error) {
+func (s *ProductsImpl) GetProductById(ctx context.Context, input *pb.RequestProduct) (*pb.Product, error) {
 	product, err := s.Repository.Product(input)
 
 	if err != nil {
@@ -46,7 +45,7 @@ func (s *productsImpl) SingelProduct(ctx context.Context, input *pb.RequestProdu
 	return s.product, nil
 }
 
-func (s *productsImpl) ProductsRPC(ctx context.Context, input *pb.User) (*pb.Products, error) {
+func (s *ProductsImpl) GetAllProduct(ctx context.Context, input *pb.User) (*pb.Products, error) {
 	products, err := s.Repository.Products(input)
 
 	if err != nil {
@@ -71,4 +70,46 @@ func (s *productsImpl) ProductsRPC(ctx context.Context, input *pb.User) (*pb.Pro
 	}
 
 	return s.products, nil
+}
+
+func (s *ProductsImpl) InsertProduct(ctx context.Context, input *pb.DataInsertProduct) (*pb.ResponseInsertProduct, error) {
+	var time string = time.Now().Format("20060102150405")
+	input.LastUpdate = time
+	insertProduct, err := s.Repository.InsertProduct(input)
+
+	if err != nil {
+		return nil, err
+	}
+
+	input.ProductImage = insertProduct.UrlImage
+
+	return &pb.ResponseInsertProduct{
+		Status:  200,
+		Message: "ok",
+		Product: input,
+	}, nil
+}
+
+func (s *ProductsImpl) DeleteProduct(ctx context.Context, input *pb.DataDeleteProduct) (*pb.ResponseDeleteProduct, error) {
+	deleteProduct, err := s.Repository.DeleteProduct(input)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.ResponseDeleteProduct{
+		Status:    200,
+		Message:   "ok",
+		ProductId: deleteProduct.ProductId,
+	}, nil
+}
+
+func (s *ProductsImpl) UpdateProduct(ctx context.Context, input *pb.DataUpdateProduct) (*pb.ResponseUpdateProduct, error) {
+	updateProduct, err := s.Repository.UpdateProduct(input)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return updateProduct, nil
 }

@@ -11,12 +11,26 @@ import (
 
 var client = &http.Client{}
 
-type resHttp struct {
+type HttpRequest interface {
+	CreateDirectoryImage(id string) (*HttpResponse, error)
+	DeleteImage(userId, productId string) (*HttpResponse, error)
+}
+
+type httpImpl struct {
+	r *HttpResponse
+}
+
+type HttpResponse struct {
 	Message string
 }
 
-func CreateDirectoryImage(id string) (*resHttp, error) {
-	statusUser := &resHttp{}
+func NewHttpRequest() HttpRequest {
+	return &httpImpl{
+		r: &HttpResponse{},
+	}
+}
+
+func (h *httpImpl) CreateDirectoryImage(id string) (*HttpResponse, error) {
 	formUserId := url.Values{}
 	formUserId.Set("id", id)
 	formUserId.Set("token", "12345")
@@ -37,18 +51,17 @@ func CreateDirectoryImage(id string) (*resHttp, error) {
 
 	defer response.Body.Close()
 
-	err = json.NewDecoder(response.Body).Decode(statusUser)
+	err = json.NewDecoder(response.Body).Decode(h.r)
 
 	if err != nil {
 		log.Print(err.Error())
 		return nil, err
 	}
 
-	return statusUser, nil
+	return h.r, nil
 }
 
-func DeleteImage(userId, productId string) (*resHttp, error) {
-	responseDeleteDirectoryImage := &resHttp{}
+func (h *httpImpl) DeleteImage(userId, productId string) (*HttpResponse, error) {
 	formDeleteImageProduct := url.Values{}
 	formDeleteImageProduct.Set("userId", userId)
 	formDeleteImageProduct.Set("productId", productId)
@@ -70,12 +83,12 @@ func DeleteImage(userId, productId string) (*resHttp, error) {
 
 	defer response.Body.Close()
 
-	err = json.NewDecoder(response.Body).Decode(responseDeleteDirectoryImage)
+	err = json.NewDecoder(response.Body).Decode(h.r)
 
 	if err != nil {
 		log.Print(err.Error())
 		return nil, err
 	}
 
-	return responseDeleteDirectoryImage, nil
+	return h.r, nil
 }

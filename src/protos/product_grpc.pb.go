@@ -22,8 +22,11 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ProductRPCClient interface {
-	ProductsRPC(ctx context.Context, in *User, opts ...grpc.CallOption) (*Products, error)
-	SingelProduct(ctx context.Context, in *RequestProduct, opts ...grpc.CallOption) (*Product, error)
+	GetAllProduct(ctx context.Context, in *User, opts ...grpc.CallOption) (*Products, error)
+	GetProductById(ctx context.Context, in *RequestProduct, opts ...grpc.CallOption) (*Product, error)
+	InsertProduct(ctx context.Context, in *DataInsertProduct, opts ...grpc.CallOption) (*ResponseInsertProduct, error)
+	DeleteProduct(ctx context.Context, in *DataDeleteProduct, opts ...grpc.CallOption) (*ResponseDeleteProduct, error)
+	UpdateProduct(ctx context.Context, in *DataUpdateProduct, opts ...grpc.CallOption) (*ResponseUpdateProduct, error)
 }
 
 type productRPCClient struct {
@@ -34,18 +37,45 @@ func NewProductRPCClient(cc grpc.ClientConnInterface) ProductRPCClient {
 	return &productRPCClient{cc}
 }
 
-func (c *productRPCClient) ProductsRPC(ctx context.Context, in *User, opts ...grpc.CallOption) (*Products, error) {
+func (c *productRPCClient) GetAllProduct(ctx context.Context, in *User, opts ...grpc.CallOption) (*Products, error) {
 	out := new(Products)
-	err := c.cc.Invoke(ctx, "/protos.ProductRPC/ProductsRPC", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/protos.ProductRPC/GetAllProduct", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *productRPCClient) SingelProduct(ctx context.Context, in *RequestProduct, opts ...grpc.CallOption) (*Product, error) {
+func (c *productRPCClient) GetProductById(ctx context.Context, in *RequestProduct, opts ...grpc.CallOption) (*Product, error) {
 	out := new(Product)
-	err := c.cc.Invoke(ctx, "/protos.ProductRPC/SingelProduct", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/protos.ProductRPC/GetProductById", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productRPCClient) InsertProduct(ctx context.Context, in *DataInsertProduct, opts ...grpc.CallOption) (*ResponseInsertProduct, error) {
+	out := new(ResponseInsertProduct)
+	err := c.cc.Invoke(ctx, "/protos.ProductRPC/InsertProduct", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productRPCClient) DeleteProduct(ctx context.Context, in *DataDeleteProduct, opts ...grpc.CallOption) (*ResponseDeleteProduct, error) {
+	out := new(ResponseDeleteProduct)
+	err := c.cc.Invoke(ctx, "/protos.ProductRPC/DeleteProduct", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productRPCClient) UpdateProduct(ctx context.Context, in *DataUpdateProduct, opts ...grpc.CallOption) (*ResponseUpdateProduct, error) {
+	out := new(ResponseUpdateProduct)
+	err := c.cc.Invoke(ctx, "/protos.ProductRPC/UpdateProduct", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -56,8 +86,11 @@ func (c *productRPCClient) SingelProduct(ctx context.Context, in *RequestProduct
 // All implementations must embed UnimplementedProductRPCServer
 // for forward compatibility
 type ProductRPCServer interface {
-	ProductsRPC(context.Context, *User) (*Products, error)
-	SingelProduct(context.Context, *RequestProduct) (*Product, error)
+	GetAllProduct(context.Context, *User) (*Products, error)
+	GetProductById(context.Context, *RequestProduct) (*Product, error)
+	InsertProduct(context.Context, *DataInsertProduct) (*ResponseInsertProduct, error)
+	DeleteProduct(context.Context, *DataDeleteProduct) (*ResponseDeleteProduct, error)
+	UpdateProduct(context.Context, *DataUpdateProduct) (*ResponseUpdateProduct, error)
 	mustEmbedUnimplementedProductRPCServer()
 }
 
@@ -65,11 +98,20 @@ type ProductRPCServer interface {
 type UnimplementedProductRPCServer struct {
 }
 
-func (UnimplementedProductRPCServer) ProductsRPC(context.Context, *User) (*Products, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ProductsRPC not implemented")
+func (UnimplementedProductRPCServer) GetAllProduct(context.Context, *User) (*Products, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllProduct not implemented")
 }
-func (UnimplementedProductRPCServer) SingelProduct(context.Context, *RequestProduct) (*Product, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SingelProduct not implemented")
+func (UnimplementedProductRPCServer) GetProductById(context.Context, *RequestProduct) (*Product, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProductById not implemented")
+}
+func (UnimplementedProductRPCServer) InsertProduct(context.Context, *DataInsertProduct) (*ResponseInsertProduct, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsertProduct not implemented")
+}
+func (UnimplementedProductRPCServer) DeleteProduct(context.Context, *DataDeleteProduct) (*ResponseDeleteProduct, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteProduct not implemented")
+}
+func (UnimplementedProductRPCServer) UpdateProduct(context.Context, *DataUpdateProduct) (*ResponseUpdateProduct, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProduct not implemented")
 }
 func (UnimplementedProductRPCServer) mustEmbedUnimplementedProductRPCServer() {}
 
@@ -84,38 +126,92 @@ func RegisterProductRPCServer(s grpc.ServiceRegistrar, srv ProductRPCServer) {
 	s.RegisterService(&ProductRPC_ServiceDesc, srv)
 }
 
-func _ProductRPC_ProductsRPC_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ProductRPC_GetAllProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(User)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProductRPCServer).ProductsRPC(ctx, in)
+		return srv.(ProductRPCServer).GetAllProduct(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/protos.ProductRPC/ProductsRPC",
+		FullMethod: "/protos.ProductRPC/GetAllProduct",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductRPCServer).ProductsRPC(ctx, req.(*User))
+		return srv.(ProductRPCServer).GetAllProduct(ctx, req.(*User))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProductRPC_SingelProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ProductRPC_GetProductById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RequestProduct)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProductRPCServer).SingelProduct(ctx, in)
+		return srv.(ProductRPCServer).GetProductById(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/protos.ProductRPC/SingelProduct",
+		FullMethod: "/protos.ProductRPC/GetProductById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductRPCServer).SingelProduct(ctx, req.(*RequestProduct))
+		return srv.(ProductRPCServer).GetProductById(ctx, req.(*RequestProduct))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductRPC_InsertProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DataInsertProduct)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductRPCServer).InsertProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/protos.ProductRPC/InsertProduct",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductRPCServer).InsertProduct(ctx, req.(*DataInsertProduct))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductRPC_DeleteProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DataDeleteProduct)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductRPCServer).DeleteProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/protos.ProductRPC/DeleteProduct",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductRPCServer).DeleteProduct(ctx, req.(*DataDeleteProduct))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductRPC_UpdateProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DataUpdateProduct)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductRPCServer).UpdateProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/protos.ProductRPC/UpdateProduct",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductRPCServer).UpdateProduct(ctx, req.(*DataUpdateProduct))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -128,12 +224,24 @@ var ProductRPC_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ProductRPCServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "ProductsRPC",
-			Handler:    _ProductRPC_ProductsRPC_Handler,
+			MethodName: "GetAllProduct",
+			Handler:    _ProductRPC_GetAllProduct_Handler,
 		},
 		{
-			MethodName: "SingelProduct",
-			Handler:    _ProductRPC_SingelProduct_Handler,
+			MethodName: "GetProductById",
+			Handler:    _ProductRPC_GetProductById_Handler,
+		},
+		{
+			MethodName: "InsertProduct",
+			Handler:    _ProductRPC_InsertProduct_Handler,
+		},
+		{
+			MethodName: "DeleteProduct",
+			Handler:    _ProductRPC_DeleteProduct_Handler,
+		},
+		{
+			MethodName: "UpdateProduct",
+			Handler:    _ProductRPC_UpdateProduct_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

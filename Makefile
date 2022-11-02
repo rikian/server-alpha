@@ -1,8 +1,12 @@
-# generate protos
-gnp:
+# generate protos auth
+gnpa:
+	protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative src/protos/auth.proto
+
+# generate protos user
+gnpu:
 	protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative src/protos/user.proto
 
-# generate protos
+# generate protos product
 gnpp:
 	protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative src/protos/product.proto
 

@@ -15,7 +15,7 @@ var productRepository = repository.ProductRepositoryMock{
 	Mock: mock.Mock{},
 }
 
-var productService = productsImpl{
+var productService = ProductsImpl{
 	Repository: &productRepository,
 }
 
@@ -39,7 +39,7 @@ func TestGetProduct(t *testing.T) {
 		ProductId:   "00bf59df-a928-4ad9-a35f-7e19fad101dd",
 	}).Return(pMock, nil)
 
-	p, err := productService.SingelProduct(ctx, &pb.RequestProduct{
+	p, err := productService.GetProductById(ctx, &pb.RequestProduct{
 		ProductName: "Kue Bantet",
 		ProductId:   "00bf59df-a928-4ad9-a35f-7e19fad101dd",
 	})
@@ -79,7 +79,7 @@ func TestGetProducts(t *testing.T) {
 		Id: "1",
 	}).Return(psMock, nil)
 
-	ps, err := productService.ProductsRPC(ctx, &pb.User{
+	ps, err := productService.GetAllProduct(ctx, &pb.User{
 		Id: "1",
 	})
 

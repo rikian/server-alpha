@@ -1,5 +1,5 @@
 make.exe --dry-run --always-make --keep-going --print-directory
 make: Entering directory 'c:/Users/Rikian/Documents/repositories/golang-main/server-beta'
-protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative src/protos/user.proto
+protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative src/protos/auth.proto
 make: Leaving directory 'c:/Users/Rikian/Documents/repositories/golang-main/server-beta'
  

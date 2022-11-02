@@ -22,14 +22,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserRPCClient interface {
-	LoginUser(ctx context.Context, in *DataLogin, opts ...grpc.CallOption) (*ResponseLogin, error)
-	RegisterUser(ctx context.Context, in *DataRegister, opts ...grpc.CallOption) (*ResponseRegister, error)
-	SelectSessionUserById(ctx context.Context, in *DataSession, opts ...grpc.CallOption) (*ResponseSession, error)
 	SelectUser(ctx context.Context, in *DataSelectUser, opts ...grpc.CallOption) (*ResponseSelectUser, error)
-	SelectUsers(ctx context.Context, in *LimitSelectUsers, opts ...grpc.CallOption) (*ResponseSelectUsers, error)
-	InsertProduct(ctx context.Context, in *DataInsertProduct, opts ...grpc.CallOption) (*ResponseInsertProduct, error)
-	DeleteProduct(ctx context.Context, in *DataDeleteProduct, opts ...grpc.CallOption) (*ResponseDeleteProduct, error)
-	UpdateProduct(ctx context.Context, in *DataUpdateProduct, opts ...grpc.CallOption) (*ResponseUpdateProduct, error)
+	SelectUsers(ctx context.Context, in *DataSelectUsers, opts ...grpc.CallOption) (*ResponseSelectUsers, error)
 }
 
 type userRPCClient struct {
@@ -38,33 +32,6 @@ type userRPCClient struct {
 
 func NewUserRPCClient(cc grpc.ClientConnInterface) UserRPCClient {
 	return &userRPCClient{cc}
-}
-
-func (c *userRPCClient) LoginUser(ctx context.Context, in *DataLogin, opts ...grpc.CallOption) (*ResponseLogin, error) {
-	out := new(ResponseLogin)
-	err := c.cc.Invoke(ctx, "/protos.UserRPC/LoginUser", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userRPCClient) RegisterUser(ctx context.Context, in *DataRegister, opts ...grpc.CallOption) (*ResponseRegister, error) {
-	out := new(ResponseRegister)
-	err := c.cc.Invoke(ctx, "/protos.UserRPC/RegisterUser", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userRPCClient) SelectSessionUserById(ctx context.Context, in *DataSession, opts ...grpc.CallOption) (*ResponseSession, error) {
-	out := new(ResponseSession)
-	err := c.cc.Invoke(ctx, "/protos.UserRPC/SelectSessionUserById", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *userRPCClient) SelectUser(ctx context.Context, in *DataSelectUser, opts ...grpc.CallOption) (*ResponseSelectUser, error) {
@@ -76,36 +43,9 @@ func (c *userRPCClient) SelectUser(ctx context.Context, in *DataSelectUser, opts
 	return out, nil
 }
 
-func (c *userRPCClient) SelectUsers(ctx context.Context, in *LimitSelectUsers, opts ...grpc.CallOption) (*ResponseSelectUsers, error) {
+func (c *userRPCClient) SelectUsers(ctx context.Context, in *DataSelectUsers, opts ...grpc.CallOption) (*ResponseSelectUsers, error) {
 	out := new(ResponseSelectUsers)
 	err := c.cc.Invoke(ctx, "/protos.UserRPC/SelectUsers", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userRPCClient) InsertProduct(ctx context.Context, in *DataInsertProduct, opts ...grpc.CallOption) (*ResponseInsertProduct, error) {
-	out := new(ResponseInsertProduct)
-	err := c.cc.Invoke(ctx, "/protos.UserRPC/InsertProduct", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userRPCClient) DeleteProduct(ctx context.Context, in *DataDeleteProduct, opts ...grpc.CallOption) (*ResponseDeleteProduct, error) {
-	out := new(ResponseDeleteProduct)
-	err := c.cc.Invoke(ctx, "/protos.UserRPC/DeleteProduct", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userRPCClient) UpdateProduct(ctx context.Context, in *DataUpdateProduct, opts ...grpc.CallOption) (*ResponseUpdateProduct, error) {
-	out := new(ResponseUpdateProduct)
-	err := c.cc.Invoke(ctx, "/protos.UserRPC/UpdateProduct", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -116,14 +56,8 @@ func (c *userRPCClient) UpdateProduct(ctx context.Context, in *DataUpdateProduct
 // All implementations must embed UnimplementedUserRPCServer
 // for forward compatibility
 type UserRPCServer interface {
-	LoginUser(context.Context, *DataLogin) (*ResponseLogin, error)
-	RegisterUser(context.Context, *DataRegister) (*ResponseRegister, error)
-	SelectSessionUserById(context.Context, *DataSession) (*ResponseSession, error)
 	SelectUser(context.Context, *DataSelectUser) (*ResponseSelectUser, error)
-	SelectUsers(context.Context, *LimitSelectUsers) (*ResponseSelectUsers, error)
-	InsertProduct(context.Context, *DataInsertProduct) (*ResponseInsertProduct, error)
-	DeleteProduct(context.Context, *DataDeleteProduct) (*ResponseDeleteProduct, error)
-	UpdateProduct(context.Context, *DataUpdateProduct) (*ResponseUpdateProduct, error)
+	SelectUsers(context.Context, *DataSelectUsers) (*ResponseSelectUsers, error)
 	mustEmbedUnimplementedUserRPCServer()
 }
 
@@ -131,29 +65,11 @@ type UserRPCServer interface {
 type UnimplementedUserRPCServer struct {
 }
 
-func (UnimplementedUserRPCServer) LoginUser(context.Context, *DataLogin) (*ResponseLogin, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LoginUser not implemented")
-}
-func (UnimplementedUserRPCServer) RegisterUser(context.Context, *DataRegister) (*ResponseRegister, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RegisterUser not implemented")
-}
-func (UnimplementedUserRPCServer) SelectSessionUserById(context.Context, *DataSession) (*ResponseSession, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SelectSessionUserById not implemented")
-}
 func (UnimplementedUserRPCServer) SelectUser(context.Context, *DataSelectUser) (*ResponseSelectUser, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SelectUser not implemented")
 }
-func (UnimplementedUserRPCServer) SelectUsers(context.Context, *LimitSelectUsers) (*ResponseSelectUsers, error) {
+func (UnimplementedUserRPCServer) SelectUsers(context.Context, *DataSelectUsers) (*ResponseSelectUsers, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SelectUsers not implemented")
-}
-func (UnimplementedUserRPCServer) InsertProduct(context.Context, *DataInsertProduct) (*ResponseInsertProduct, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method InsertProduct not implemented")
-}
-func (UnimplementedUserRPCServer) DeleteProduct(context.Context, *DataDeleteProduct) (*ResponseDeleteProduct, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteProduct not implemented")
-}
-func (UnimplementedUserRPCServer) UpdateProduct(context.Context, *DataUpdateProduct) (*ResponseUpdateProduct, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateProduct not implemented")
 }
 func (UnimplementedUserRPCServer) mustEmbedUnimplementedUserRPCServer() {}
 
@@ -166,60 +82,6 @@ type UnsafeUserRPCServer interface {
 
 func RegisterUserRPCServer(s grpc.ServiceRegistrar, srv UserRPCServer) {
 	s.RegisterService(&UserRPC_ServiceDesc, srv)
-}
-
-func _UserRPC_LoginUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DataLogin)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserRPCServer).LoginUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/protos.UserRPC/LoginUser",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserRPCServer).LoginUser(ctx, req.(*DataLogin))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _UserRPC_RegisterUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DataRegister)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserRPCServer).RegisterUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/protos.UserRPC/RegisterUser",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserRPCServer).RegisterUser(ctx, req.(*DataRegister))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _UserRPC_SelectSessionUserById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DataSession)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserRPCServer).SelectSessionUserById(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/protos.UserRPC/SelectSessionUserById",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserRPCServer).SelectSessionUserById(ctx, req.(*DataSession))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _UserRPC_SelectUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -241,7 +103,7 @@ func _UserRPC_SelectUser_Handler(srv interface{}, ctx context.Context, dec func(
 }
 
 func _UserRPC_SelectUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LimitSelectUsers)
+	in := new(DataSelectUsers)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -253,61 +115,7 @@ func _UserRPC_SelectUsers_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: "/protos.UserRPC/SelectUsers",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserRPCServer).SelectUsers(ctx, req.(*LimitSelectUsers))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _UserRPC_InsertProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DataInsertProduct)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserRPCServer).InsertProduct(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/protos.UserRPC/InsertProduct",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserRPCServer).InsertProduct(ctx, req.(*DataInsertProduct))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _UserRPC_DeleteProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DataDeleteProduct)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserRPCServer).DeleteProduct(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/protos.UserRPC/DeleteProduct",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserRPCServer).DeleteProduct(ctx, req.(*DataDeleteProduct))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _UserRPC_UpdateProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DataUpdateProduct)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserRPCServer).UpdateProduct(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/protos.UserRPC/UpdateProduct",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserRPCServer).UpdateProduct(ctx, req.(*DataUpdateProduct))
+		return srv.(UserRPCServer).SelectUsers(ctx, req.(*DataSelectUsers))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -320,36 +128,12 @@ var UserRPC_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*UserRPCServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "LoginUser",
-			Handler:    _UserRPC_LoginUser_Handler,
-		},
-		{
-			MethodName: "RegisterUser",
-			Handler:    _UserRPC_RegisterUser_Handler,
-		},
-		{
-			MethodName: "SelectSessionUserById",
-			Handler:    _UserRPC_SelectSessionUserById_Handler,
-		},
-		{
 			MethodName: "SelectUser",
 			Handler:    _UserRPC_SelectUser_Handler,
 		},
 		{
 			MethodName: "SelectUsers",
 			Handler:    _UserRPC_SelectUsers_Handler,
-		},
-		{
-			MethodName: "InsertProduct",
-			Handler:    _UserRPC_InsertProduct_Handler,
-		},
-		{
-			MethodName: "DeleteProduct",
-			Handler:    _UserRPC_DeleteProduct_Handler,
-		},
-		{
-			MethodName: "UpdateProduct",
-			Handler:    _UserRPC_UpdateProduct_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

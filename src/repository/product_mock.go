@@ -32,3 +32,15 @@ func (m *ProductRepositoryMock) Products(input *pb.User) ([]entities.Product, er
 		return products, nil
 	}
 }
+
+func (m *ProductRepositoryMock) InsertProduct(input *pb.DataInsertProduct) (*entities.ResponseInsertProduct, error) {
+	return nil, nil
+}
+
+func (m *ProductRepositoryMock) DeleteProduct(i *pb.DataDeleteProduct) (*entities.ResponseDeleteProduct, error) {
+	return nil, nil
+}
+
+func (m *ProductRepositoryMock) UpdateProduct(i *pb.DataUpdateProduct) (*pb.ResponseUpdateProduct, error) {
+	return nil, nil
+}
